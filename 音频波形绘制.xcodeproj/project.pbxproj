@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B092E0A23BB3927000EA288 /* whenImissYou2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8B092E0923BB3927000EA288 /* whenImissYou2.m4a */; };
+		824866F825E7950C001C7034 /* PcmAddWavHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 824866F725E7950C001C7034 /* PcmAddWavHeader.m */; };
+		8263399A25E7B2930072BB76 /* 小青蛙唱歌.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8263399925E7B2930072BB76 /* 小青蛙唱歌.wav */; };
 		8B092E0D23BB4AF4000EA288 /* SCPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B092E0B23BB4AF4000EA288 /* SCPlayer.m */; };
 		8B09613C23B1F96400EC2F6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B09613B23B1F96400EC2F6A /* AppDelegate.m */; };
 		8B09613F23B1F96400EC2F6A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B09613E23B1F96400EC2F6A /* SceneDelegate.m */; };
@@ -18,21 +19,14 @@
 		8B09614D23B1F96500EC2F6A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B09614C23B1F96500EC2F6A /* main.m */; };
 		8B09615423B1FC1400EC2F6A /* whenImissYou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B09615323B1FC1400EC2F6A /* whenImissYou.mp3 */; };
 		8B09615723B1FC7A00EC2F6A /* SeeAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B09615623B1FC7A00EC2F6A /* SeeAudio.m */; };
-		8B89852D23BDB1B700B2AE01 /* 郭德纲于谦-西征梦.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B89852C23BDB1B700B2AE01 /* 郭德纲于谦-西征梦.mp3 */; };
-		8B89852F23BDC34C00B2AE01 /* v1.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 8B89852E23BDC34C00B2AE01 /* v1.MOV */; };
-		8B89853123BDC7CE00B2AE01 /* cat1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8B89853023BDC7CE00B2AE01 /* cat1.mp4 */; };
-		8BB5B34D2428BAAC00990410 /* 1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8BB5B34B2428BAAC00990410 /* 1.m4a */; };
-		8BB5B34E2428BAAC00990410 /* 2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8BB5B34C2428BAAC00990410 /* 2.m4a */; };
-		8BB5B3512428BCD800990410 /* 3.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8BB5B34F2428BCD800990410 /* 3.m4a */; };
-		8BB5B3522428BCD800990410 /* 4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8BB5B3502428BCD800990410 /* 4.m4a */; };
-		8BBB951B23B3258E00B4005F /* whenImissYou.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 8BBB951A23B3258E00B4005F /* whenImissYou.m4a */; };
 		F68EF36F25E21DEA0039E687 /* 小青蛙唱歌.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F68EF36E25E21DEA0039E687 /* 小青蛙唱歌.mp3 */; };
-		F6EE5BAD25E23AF80065FD51 /* Rixx-Wav.wav in Resources */ = {isa = PBXBuildFile; fileRef = F6EE5BAC25E23AF80065FD51 /* Rixx-Wav.wav */; };
 		F6EE5BB225E249DD0065FD51 /* AudioToWav.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EE5BB125E249DD0065FD51 /* AudioToWav.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8B092E0923BB3927000EA288 /* whenImissYou2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = whenImissYou2.m4a; sourceTree = "<group>"; };
+		824866F625E7950C001C7034 /* PcmAddWavHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PcmAddWavHeader.h; sourceTree = "<group>"; };
+		824866F725E7950C001C7034 /* PcmAddWavHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PcmAddWavHeader.m; sourceTree = "<group>"; };
+		8263399925E7B2930072BB76 /* 小青蛙唱歌.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "小青蛙唱歌.wav"; sourceTree = "<group>"; };
 		8B092E0B23BB4AF4000EA288 /* SCPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPlayer.m; sourceTree = "<group>"; };
 		8B092E0C23BB4AF4000EA288 /* SCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPlayer.h; sourceTree = "<group>"; };
 		8B09613723B1F96400EC2F6A /* 音频波形绘制.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "音频波形绘制.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,16 +44,7 @@
 		8B09615323B1FC1400EC2F6A /* whenImissYou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = whenImissYou.mp3; sourceTree = "<group>"; };
 		8B09615523B1FC7A00EC2F6A /* SeeAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeeAudio.h; sourceTree = "<group>"; };
 		8B09615623B1FC7A00EC2F6A /* SeeAudio.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeeAudio.m; sourceTree = "<group>"; };
-		8B89852C23BDB1B700B2AE01 /* 郭德纲于谦-西征梦.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "郭德纲于谦-西征梦.mp3"; sourceTree = "<group>"; };
-		8B89852E23BDC34C00B2AE01 /* v1.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = v1.MOV; sourceTree = "<group>"; };
-		8B89853023BDC7CE00B2AE01 /* cat1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cat1.mp4; sourceTree = "<group>"; };
-		8BB5B34B2428BAAC00990410 /* 1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.m4a; sourceTree = "<group>"; };
-		8BB5B34C2428BAAC00990410 /* 2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2.m4a; sourceTree = "<group>"; };
-		8BB5B34F2428BCD800990410 /* 3.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 3.m4a; sourceTree = "<group>"; };
-		8BB5B3502428BCD800990410 /* 4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = 4.m4a; sourceTree = "<group>"; };
-		8BBB951A23B3258E00B4005F /* whenImissYou.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = whenImissYou.m4a; sourceTree = "<group>"; };
 		F68EF36E25E21DEA0039E687 /* 小青蛙唱歌.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "小青蛙唱歌.mp3"; path = "src/小青蛙唱歌.mp3"; sourceTree = SOURCE_ROOT; };
-		F6EE5BAC25E23AF80065FD51 /* Rixx-Wav.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Rixx-Wav.wav"; sourceTree = "<group>"; };
 		F6EE5BB025E249DD0065FD51 /* AudioToWav.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioToWav.h; sourceTree = "<group>"; };
 		F6EE5BB125E249DD0065FD51 /* AudioToWav.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioToWav.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,19 +60,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8B092E0E23BB4EF7000EA288 /* weaveFormate */ = {
+		824866FC25E7985E001C7034 /* other */ = {
 			isa = PBXGroup;
 			children = (
-				F6EE5BB025E249DD0065FD51 /* AudioToWav.h */,
-				F6EE5BB125E249DD0065FD51 /* AudioToWav.m */,
-				8B09614023B1F96400EC2F6A /* ViewController.h */,
-				8B09614123B1F96400EC2F6A /* ViewController.m */,
-				8B09615523B1FC7A00EC2F6A /* SeeAudio.h */,
-				8B09615623B1FC7A00EC2F6A /* SeeAudio.m */,
-				8B092E0C23BB4AF4000EA288 /* SCPlayer.h */,
-				8B092E0B23BB4AF4000EA288 /* SCPlayer.m */,
+				8B09613A23B1F96400EC2F6A /* AppDelegate.h */,
+				8B09613B23B1F96400EC2F6A /* AppDelegate.m */,
+				8B09613D23B1F96400EC2F6A /* SceneDelegate.h */,
+				8B09613E23B1F96400EC2F6A /* SceneDelegate.m */,
+				8B09614323B1F96400EC2F6A /* Main.storyboard */,
+				8B09614623B1F96500EC2F6A /* Assets.xcassets */,
+				8B09614823B1F96500EC2F6A /* LaunchScreen.storyboard */,
+				8B09614B23B1F96500EC2F6A /* Info.plist */,
+				8B09614C23B1F96500EC2F6A /* main.m */,
 			);
-			path = weaveFormate;
+			path = other;
 			sourceTree = "<group>";
 		};
 		8B09612E23B1F96400EC2F6A = {
@@ -109,28 +95,20 @@
 		8B09613923B1F96400EC2F6A /* 音频波形绘制 */ = {
 			isa = PBXGroup;
 			children = (
-				F6EE5BAC25E23AF80065FD51 /* Rixx-Wav.wav */,
-				8B89852E23BDC34C00B2AE01 /* v1.MOV */,
-				8B89853023BDC7CE00B2AE01 /* cat1.mp4 */,
 				F68EF36E25E21DEA0039E687 /* 小青蛙唱歌.mp3 */,
-				8B092E0E23BB4EF7000EA288 /* weaveFormate */,
-				8B89852C23BDB1B700B2AE01 /* 郭德纲于谦-西征梦.mp3 */,
-				8BB5B34F2428BCD800990410 /* 3.m4a */,
-				8BB5B3502428BCD800990410 /* 4.m4a */,
-				8B092E0923BB3927000EA288 /* whenImissYou2.m4a */,
-				8BBB951A23B3258E00B4005F /* whenImissYou.m4a */,
-				8BB5B34B2428BAAC00990410 /* 1.m4a */,
-				8BB5B34C2428BAAC00990410 /* 2.m4a */,
+				8263399925E7B2930072BB76 /* 小青蛙唱歌.wav */,
 				8B09615323B1FC1400EC2F6A /* whenImissYou.mp3 */,
-				8B09613A23B1F96400EC2F6A /* AppDelegate.h */,
-				8B09613B23B1F96400EC2F6A /* AppDelegate.m */,
-				8B09613D23B1F96400EC2F6A /* SceneDelegate.h */,
-				8B09613E23B1F96400EC2F6A /* SceneDelegate.m */,
-				8B09614323B1F96400EC2F6A /* Main.storyboard */,
-				8B09614623B1F96500EC2F6A /* Assets.xcassets */,
-				8B09614823B1F96500EC2F6A /* LaunchScreen.storyboard */,
-				8B09614B23B1F96500EC2F6A /* Info.plist */,
-				8B09614C23B1F96500EC2F6A /* main.m */,
+				F6EE5BB025E249DD0065FD51 /* AudioToWav.h */,
+				F6EE5BB125E249DD0065FD51 /* AudioToWav.m */,
+				8B09615523B1FC7A00EC2F6A /* SeeAudio.h */,
+				8B09615623B1FC7A00EC2F6A /* SeeAudio.m */,
+				8B092E0C23BB4AF4000EA288 /* SCPlayer.h */,
+				8B092E0B23BB4AF4000EA288 /* SCPlayer.m */,
+				824866F625E7950C001C7034 /* PcmAddWavHeader.h */,
+				824866F725E7950C001C7034 /* PcmAddWavHeader.m */,
+				8B09614023B1F96400EC2F6A /* ViewController.h */,
+				8B09614123B1F96400EC2F6A /* ViewController.m */,
+				824866FC25E7985E001C7034 /* other */,
 			);
 			path = "音频波形绘制";
 			sourceTree = "<group>";
@@ -192,21 +170,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BB5B34D2428BAAC00990410 /* 1.m4a in Resources */,
-				8BB5B3522428BCD800990410 /* 4.m4a in Resources */,
-				8BBB951B23B3258E00B4005F /* whenImissYou.m4a in Resources */,
-				8B89852D23BDB1B700B2AE01 /* 郭德纲于谦-西征梦.mp3 in Resources */,
-				8BB5B34E2428BAAC00990410 /* 2.m4a in Resources */,
 				8B09614A23B1F96500EC2F6A /* LaunchScreen.storyboard in Resources */,
 				8B09614723B1F96500EC2F6A /* Assets.xcassets in Resources */,
-				F6EE5BAD25E23AF80065FD51 /* Rixx-Wav.wav in Resources */,
-				8B89852F23BDC34C00B2AE01 /* v1.MOV in Resources */,
-				8BB5B3512428BCD800990410 /* 3.m4a in Resources */,
+				8263399A25E7B2930072BB76 /* 小青蛙唱歌.wav in Resources */,
 				8B09615423B1FC1400EC2F6A /* whenImissYou.mp3 in Resources */,
 				F68EF36F25E21DEA0039E687 /* 小青蛙唱歌.mp3 in Resources */,
 				8B09614523B1F96400EC2F6A /* Main.storyboard in Resources */,
-				8B89853123BDC7CE00B2AE01 /* cat1.mp4 in Resources */,
-				8B092E0A23BB3927000EA288 /* whenImissYou2.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +190,7 @@
 				8B09614223B1F96400EC2F6A /* ViewController.m in Sources */,
 				8B09613C23B1F96400EC2F6A /* AppDelegate.m in Sources */,
 				8B09614D23B1F96500EC2F6A /* main.m in Sources */,
+				824866F825E7950C001C7034 /* PcmAddWavHeader.m in Sources */,
 				8B09615723B1FC7A00EC2F6A /* SeeAudio.m in Sources */,
 				8B092E0D23BB4AF4000EA288 /* SCPlayer.m in Sources */,
 				8B09613F23B1F96400EC2F6A /* SceneDelegate.m in Sources */,
@@ -365,7 +335,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8C3CUAZLUJ;
-				INFOPLIST_FILE = "音频波形绘制/Info.plist";
+				INFOPLIST_FILE = "音频波形绘制/other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -383,7 +353,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8C3CUAZLUJ;
-				INFOPLIST_FILE = "音频波形绘制/Info.plist";
+				INFOPLIST_FILE = "音频波形绘制/other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
