@@ -100,7 +100,7 @@
     
     NSData *allSongSamples1 = [[NSData alloc] initWithContentsOfFile:path];
     
-    //在转为wav时会增加4000字节的空值，需要去掉，索性去掉4096吧:)
+    //在转为wav时会增加4000字节的空值,性去掉4096
     long wav1DataSize = [allSongSamples1 length] - 44 - 4096;
     
     allSongSamples = [[NSMutableData alloc] initWithCapacity:wav1DataSize];
