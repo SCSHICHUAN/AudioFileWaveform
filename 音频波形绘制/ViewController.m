@@ -33,14 +33,28 @@
     redScale =[[UIView alloc] initWithFrame:CGRectMake(screenW/2, 0, 1, screenW)];
     redScale.backgroundColor = UIColor.redColor;
     [self.view addSubview:redScale];
- 
     
-//    [self turnFormat];
-//    [self cutAudio];
-   [self seeAudio];
-//    [self audioPlayer];
-//    [self appendAudio];
+    
+    [self turnFormat];
+    [self seeAudio];
+    [self cutAudio];
+    [self appendAudio];
+    [self audioPlayer];
+    
 }
+
+-(void)turnFormat
+{
+    NSURL *formatUrl =  [[NSBundle mainBundle] URLForResource:@"小青蛙唱歌" withExtension:@"mp3"];
+    
+    NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *path = [document stringByAppendingPathComponent:@"小青蛙唱歌.wav"];
+    NSLog(@"document=%@",document);
+    
+    [AudioToWav FormatPath:formatUrl.absoluteString seavePath:path];
+    
+}
+
 -(void)seeAudio
 {
     
@@ -74,27 +88,9 @@
         
     }];
     
-  
-}
--(void)audioPlayer
-{
-    NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *path = [document stringByAppendingPathComponent:@"test.wav"];
-    NSError *error;
-    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:path] error:&error];
-   [audioPlayer play];
-}
-
--(void)timeRunAndTime:(NSInteger)runTime
-{
-    //线形运动，不要缓动
-    [UIView animateWithDuration:139 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-        [self->vv setContentOffset:CGPointMake(self->ww-screenW, 0) animated:NO];
-    } completion:^(BOOL finished) {
-        
-    }];
     
 }
+
 -(void)cutAudio
 {
     
@@ -113,7 +109,7 @@
     
     NSRange rr;
     rr.location = 0;
-    rr.length = ((44100*16*2)/8.0)*11;
+    rr.length = ((44100*16*2)/8.0)*10;
     allSongSamples = (NSMutableData*)[allSongSamples subdataWithRange:rr];
     
     
@@ -122,76 +118,58 @@
     [PcmAddWavHeader PcmAddWavHeader:allSongSamples toFile:path1];
 }
 
-
 -(void)appendAudio
 {
-    count = 1;
-    
     NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *path = [document stringByAppendingPathComponent:@"appand1.wav"];
-    NSURL *url1 = [[NSBundle mainBundle] URLForResource:@"3" withExtension:@"m4a"];
-    [AudioToWav FormatPath:url1.absoluteString seavePath:path];
     
+    //第一段音频
+    NSString *cut_1_path = [document stringByAppendingPathComponent:@"cut_1.wav"];
+    NSMutableData *cut_1_data = [[NSMutableData alloc] initWithContentsOfFile:cut_1_path];
+    long cut_1_DataSize = [cut_1_data length] - 44-4096;
+    NSMutableData *acut_1_Samples = [[NSMutableData alloc] initWithCapacity:cut_1_DataSize];
+    [acut_1_Samples appendData:[cut_1_data subdataWithRange:NSMakeRange(44+4096, cut_1_DataSize)]];
     
+    //第二段音频
+    NSString *cut_2_path = [document stringByAppendingPathComponent:@"cut_2.wav"];
+    NSMutableData *cut_2_data = [[NSMutableData alloc] initWithContentsOfFile:cut_2_path];
+    long cut_2_DataSize = [cut_1_data length] - 44-4096;
+    NSMutableData *acut_2_Samples = [[NSMutableData alloc] initWithCapacity:cut_2_DataSize];
+    [acut_2_Samples appendData:[cut_2_data subdataWithRange:NSMakeRange(44+4096, cut_2_DataSize)]];
     
-
-    NSString *path2 = [document stringByAppendingPathComponent:@"appand2.wav"];
-    NSURL *url2 = [[NSBundle mainBundle] URLForResource:@"4" withExtension:@"m4a"];
-    [AudioToWav FormatPath:url2.absoluteString seavePath:path2];
-
-  
-   
+    //拼接
+    [acut_2_Samples appendData:acut_1_Samples];
+    
+    //输出
+    NSString *appendAudio_path = [document stringByAppendingPathComponent:@"appendAudio.wav"];
+    [PcmAddWavHeader PcmAddWavHeader:acut_2_Samples toFile:appendAudio_path];
 }
--(void)append
+
+
+
+-(void)audioPlayer
 {
-     NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    
-       NSString *path11 = [document stringByAppendingPathComponent:@"appand1.wav"];
-       NSMutableData *wdata1 = [[NSMutableData alloc] initWithContentsOfFile:path11];
-    
+    NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString *path = [document stringByAppendingPathComponent:@"cut_2.wav"];
+    NSError *error;
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:path] error:&error];
+    [audioPlayer play];
+}
+
+-(void)timeRunAndTime:(NSInteger)runTime
+{
+    //线形运动，不要缓动
+    [UIView animateWithDuration:139 delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+        [self->vv setContentOffset:CGPointMake(self->ww-screenW, 0) animated:NO];
+    } completion:^(BOOL finished) {
         
-      long wav1DataSize = [wdata1 length] - 44-4096;
-       
-       allSongSamples = [[NSMutableData alloc] initWithCapacity:wav1DataSize];
-       [allSongSamples appendData:[wdata1 subdataWithRange:NSMakeRange(44+4096, wav1DataSize)]];
-       wdata1  =  allSongSamples;
+    }];
     
-       
-    
-    
-    
-    
-       NSString *path22 = [document stringByAppendingPathComponent:@"appand2.wav"];
-       NSMutableData *wdata2 = [[NSMutableData alloc] initWithContentsOfFile:path22];
-    
-    
-    
-    {
-        long wav1DataSize = [wdata2 length] - 44-4096;
-        allSongSamples = [[NSMutableData alloc] initWithCapacity:wav1DataSize];
-        [allSongSamples appendData:[wdata2 subdataWithRange:NSMakeRange(44+4096, wav1DataSize)]];
-        wdata2  =  allSongSamples;
-    }
-    
-    
-    
-    
-       [wdata1 appendData:wdata2];
-       NSString *path1 = [document stringByAppendingPathComponent:@"test.wav"];
-      [PcmAddWavHeader PcmAddWavHeader:wdata1 toFile:path1];
 }
 
--(void)turnFormat
-{
-    NSURL *formatUrl =  [[NSBundle mainBundle] URLForResource:@"小青蛙唱歌" withExtension:@"mp3"];
-    
-    NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    NSString *path = [document stringByAppendingPathComponent:@"小青蛙唱歌.wav"];
-    NSLog(@"document=%@",document);
-    
-    [AudioToWav FormatPath:formatUrl.absoluteString seavePath:path];
 
-}
+
+
+
 
 
 

@@ -164,7 +164,7 @@ value = 2.5 * 1000 = 2500;
                 for (int j=1; j<channelCount; j++)
                     samples++;
         
-                tallyCount++;
+                tallyCount++;//一帧一帧的加起来，一份就是4410
                 
                 /*
                  把帧加起来求平均值，因为帧数太多
@@ -218,7 +218,7 @@ value = 2.5 * 1000 = 2500;
     
     
     int imageCentreY = KimageHeight/2;
-    int offsetX = halfScreenW;
+    int offsetX = halfScreenW;//移到屏幕中间开始画
     int secend = 0;
     int time = 0;
     int start = -1;
@@ -233,18 +233,28 @@ value = 2.5 * 1000 = 2500;
         Float32 sample = *(samples++);
         if(!sample) { NSLog(@"wrong wrong------"); break;}
         int offsetY = (fabsf(sample)-50)*k;
-        //        printf("%d  ",offsetY);
+        printf("offsetY:%d\n",offsetY);
+        
+        
+        //画音频波形条
         CGContextSetAlpha(context,1.0);
         CGContextSetLineWidth(context, 1.0);
         CGContextSetStrokeColorWithColor(context, UIColor.whiteColor.CGColor);
         CGContextMoveToPoint(context, offsetX, imageCentreY-offsetY);
         CGContextAddLineToPoint(context, offsetX, imageCentreY+offsetY);
         CGContextStrokePath(context);
+        offsetX+=spaceX;
         
-        //时间刻度和时间,一个豆腐砍9刀分为10份
+        
+        
+        
+        /*
+         时间刻度和时间,
+         一个豆腐砍9刀分为10份
+         */
         if (secend == 9 || start == -1) {
             start = 0;
-            
+
             CGContextSetAlpha(context,1.0);
             CGContextSetLineWidth(context, 1.0);
             CGContextSetStrokeColorWithColor(context, UIColor.whiteColor.CGColor);
@@ -252,8 +262,8 @@ value = 2.5 * 1000 = 2500;
             CGContextAddLineToPoint(context, offsetX,10);
             CGContextStrokePath(context);
             secend = 0;
-            
-            
+
+
             CGContextSetLineWidth(context, 1.0);
             CGContextSetStrokeColorWithColor(context, UIColor.whiteColor.CGColor);
             CGContextStrokePath(context);
@@ -272,30 +282,31 @@ value = 2.5 * 1000 = 2500;
             secend++;
         }
         
-        offsetX+=spaceX;
+       
     }
     
     
-    //draw line
-    UIBezierPath *line = [UIBezierPath bezierPath];
-    [line moveToPoint:CGPointMake(0, 0)];
-    [line addLineToPoint:CGPointMake(imageSize.width,0)];
-    [line setLineWidth:1.0];
+//    //draw line
+//    UIBezierPath *line = [UIBezierPath bezierPath];
+//    [line moveToPoint:CGPointMake(0, 0)];
+//    [line addLineToPoint:CGPointMake(imageSize.width,0)];
+//    [line setLineWidth:1.0];
 //    [line stroke];
-    //center line
-    [line moveToPoint:CGPointMake(0, KimageHeight/2)];
-    [line addLineToPoint:CGPointMake(imageSize.width, KimageHeight/2)];
-    [line setLineWidth:1.0];
-    //    [line stroke];
-    
-    [line moveToPoint:CGPointMake(0, KimageHeight)];
-    [line addLineToPoint:CGPointMake(imageSize.width, KimageHeight)];
-    [line setLineWidth:1.0];
-    //    [line stroke];
+//    //center line
+//    [line moveToPoint:CGPointMake(0, KimageHeight/2)];
+//    [line addLineToPoint:CGPointMake(imageSize.width, KimageHeight/2)];
+//    [line setLineWidth:1.0];
+//    [line stroke];
+//
+//    [line moveToPoint:CGPointMake(0, KimageHeight)];
+//    [line addLineToPoint:CGPointMake(imageSize.width, KimageHeight)];
+//    [line setLineWidth:1.0];
+//    [line stroke];
     
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     done(image,drowCount*spaceX+halfScreenW*2);
 }
+
 @end
