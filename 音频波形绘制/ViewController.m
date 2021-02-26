@@ -36,8 +36,8 @@
  
     
 //    [self turnFormat];
-    [self cutAudio];
-//   [self seeAudio];
+//    [self cutAudio];
+   [self seeAudio];
 //    [self audioPlayer];
 //    [self appendAudio];
 }
@@ -65,7 +65,7 @@
         self->vv = scrv;
         
         
-        SCPlayer *scp = [[SCPlayer alloc] initWithFrame:CGRectMake(0, 400, screenW, 300)];
+        SCPlayer *scp = [[SCPlayer alloc] initWithFrame:CGRectMake(0, 400, screenW, 1)];
         [scp replaceCurrentUrl:url.absoluteString];
         scp.delegate = self;
         [self.view addSubview:scp];

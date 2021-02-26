@@ -49,14 +49,16 @@ value = 2.5 * 1000 = 2500;
 @interface SeeAudio ()
 @end
 
+/*
+ AVAsset：为定时视听媒体定义AVFoundation模型的抽象的、不可变的类。
+  每个asset包含想要一起呈现或处理的统一的媒体类型轨道的集合。asset中的每个媒体数据片段都是统一的类型，称为轨道（track）。
+ AVAsset是一个容器对象，由一个或多个AVAssetTrack实例组成，最常用的track类型是音频和视频track，AVAssetTrack还可以模拟其他辅助轨道，
+ 如隐藏式字幕，字幕和定时元数据。AVAsset通常通过具体的子类AVURLAsset通过NSURL实例化，该NSURL引用视听媒体资源，如流（包括HTTP实时流），
+ QuickTime电影文件，MP3文件和其他类型的文件。
 
+ */
 @implementation SeeAudio
 
--(instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    return self;
-}
 //get data
 - (void)renderPNGAudioPictogramLogForAsset:(AVURLAsset *)songAsset
                                       done:(void(^)(UIImage *image,NSInteger imageWidth))done
@@ -69,8 +71,7 @@ value = 2.5 * 1000 = 2500;
     //存所有平均值
     NSMutableData *fullSongData;
     NSError *error = nil;
-    //创建多媒体阅读器
-    AVAssetReader *reader = [[AVAssetReader alloc] initWithAsset:songAsset error:&error];
+    
     //筛选出audio
     NSArray *audioTracks = [songAsset tracksWithMediaType:AVMediaTypeAudio];
     //获取其中的一个音频轨道
@@ -78,8 +79,10 @@ value = 2.5 * 1000 = 2500;
     //CMTime  时间 = value / 时间基
     float duration = songAsset.duration.value/songAsset.duration.timescale;
     int32_t timescale = songAsset.duration.timescale;
+    NSLog(@"音频的时长=%f",duration);
     
-    NSLog(@"duration=%f",duration);
+    
+    
     NSDictionary *outputSettingsDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                                         [NSNumber numberWithInt:kAudioFormatLinearPCM],AVFormatIDKey,
                                         [NSNumber numberWithInt:16],AVLinearPCMBitDepthKey,
@@ -89,6 +92,8 @@ value = 2.5 * 1000 = 2500;
                                         nil];
     // You can read the samples in the track in their stored format, or you can convert them to a different format.
     AVAssetReaderTrackOutput *output = [[AVAssetReaderTrackOutput alloc] initWithTrack:songTrack outputSettings:outputSettingsDict];
+    //创建多媒体阅读器
+    AVAssetReader *reader = [[AVAssetReader alloc] initWithAsset:songAsset error:&error];
     [reader addOutput:output];
     
     
@@ -99,10 +104,11 @@ value = 2.5 * 1000 = 2500;
         //获取多媒体描述
         const AudioStreamBasicDescription* fmtDesc = CMAudioFormatDescriptionGetStreamBasicDescription(item);
         if (!fmtDesc) return; //!
+        //mChannelsPerFrame:The number of channels in each frame of data
         channelCount = fmtDesc->mChannelsPerFrame;
     }
     
-    UInt32 bytesPerInputSample = 2 * channelCount;
+    UInt32 bytesPerInputSample = 2 * channelCount;//每一帧的空间
     maximum = noiseFloor;
     Float64 tally = 0;
     Float32 tallyCount = 0;
@@ -113,6 +119,7 @@ value = 2.5 * 1000 = 2500;
     
     
     fullSongData = [[NSMutableData alloc] init];
+    //开始读取数据
     [reader startReading];
     
     /*
@@ -135,24 +142,28 @@ value = 2.5 * 1000 = 2500;
              @param    offsetToData
              @param    dataLength
              @param    destination
+             把数据拷贝到data中
              */
             CMBlockBufferCopyDataBytes(blockBufferRef, 0, bufferLength, data.mutableBytes);
             
             
             SInt16 *samples = (SInt16 *)data.mutableBytes;
-            // 16 = [8][8],两位表示一个fream
+            NSLog(@"一个音频数据包:%hu",(signed short)samples);
+            // 16 = [8][8],两个字节表示一个fream
             long sampleCount = bufferLength / bytesPerInputSample;
             for (int i=0; i<sampleCount; i++) {
-                
+                //每次向前移动2个字节 取到一个声道的数据
                 Float32 sample = (Float32) *samples++;//获取一帧一帧的采样
+                
                 //求出50以内的值，最大值50
                 sample = decibel(sample);
                 sample = minMaxX(sample,noiseFloor,0);
+              
                 tally += sample;
-                //获取多个声道中的一个声道数据
+                //跳过第二声道数据 一次循环向前移动4个字节 16 位双声道的一帧
                 for (int j=1; j<channelCount; j++)
                     samples++;
-                
+        
                 tallyCount++;
                 
                 /*
@@ -162,7 +173,7 @@ value = 2.5 * 1000 = 2500;
                  把这4410加起来求平均值，然后放入缓冲区，即一个条形的高度
                  */
                 if (tallyCount == (timescale/10)) {
-                    
+
                     sample = tally / tallyCount;
                     maximum = maximum > sample ? maximum : sample;//求最大的平均值
                     int sampleLen = sizeof(sample);
@@ -181,7 +192,7 @@ value = 2.5 * 1000 = 2500;
     NSInteger drowCount = duration*10;
     
     if (reader.status == AVAssetReaderStatusCompleted){
-        NSLog(@"FDWaveformView: start rendering PNG W= %f", outSamples);
+        NSLog(@"音频的总的刻度= %f", outSamples);
         [self plotLogGraph:(Float32 *)fullSongData.bytes
               maximumValue:maximum
                  drowCount:drowCount

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SeeAudio : UIView
--(instancetype)initWithFrame:(CGRect)frame;
+
 - (void)renderPNGAudioPictogramLogForAsset:(AVURLAsset *)songAsset
                                       done:(void(^)(UIImage *image,NSInteger imageWidth))done;
 @end
